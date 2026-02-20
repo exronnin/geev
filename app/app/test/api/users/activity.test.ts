@@ -28,7 +28,7 @@ describe('GET /api/users/[id]/activity', () => {
     (prisma.post.findMany as any).mockResolvedValue([
       { id: 'p1', title: 'Post 1', slug: 'post-1', createdAt: new Date('2026-01-10T10:00:00Z') },
     ]);
-    (prisma.entry.findMany as any).mockImplementation(({ where }) => {
+    (prisma.entry.findMany as any).mockImplementation(({ where }: { where: any }) => {
       if (where?.isWinner) {
         return Promise.resolve([
           { id: 'e2', createdAt: new Date('2026-01-11T12:00:00Z'), postId: 'p2', post: { id: 'p2', title: 'Post 2', slug: 'post-2' } },
